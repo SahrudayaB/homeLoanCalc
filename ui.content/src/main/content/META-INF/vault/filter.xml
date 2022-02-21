@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/homeLoanCalc" mode="merge"/>
+    <filter root="/content/homeLoanCalc" mode="merge"/>
+    <filter root="/content/dam/homeLoanCalc" mode="merge"/>
+    <filter root="/content/experience-fragments/homeLoanCalc" mode="merge"/>
+</workspaceFilter>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/homeLoanCalc/clientlibs"/>
+    <filter root="/apps/homeLoanCalc/components"/>
+    <filter root="/apps/homeLoanCalc/i18n"/>
+</workspaceFilter>

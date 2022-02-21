@@ -1,0 +1,139 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html">
+     <sly data-sly-call="${clientlib.all @ categories='home.loan.calc'}">
+</sly>
+
+
+<script defer src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<style>
+
+.slideContainer {
+    position: absolute;
+    margin: 0 auto;
+    left: -27px;
+    top: 127px;
+    width: 0px;
+    height: 135px;
+}
+
+input[type='range'] {
+    width: 120px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      overflow: hidden;
+      width: 260px;
+      height : 10px;
+      cursor : pointer;
+      -webkit-appearance: none;
+      background-color: #CACACA;
+      border-radius: 1px;
+
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      width : 260px;
+      background-color : #CACACA;
+      -webkit-appearance: none;
+    }
+
+    
+    input[type='range']::-webkit-slider-thumb {
+      position : relative;
+      width: 15px;
+      height: 15px;
+     -webkit-appearance: none;
+      background-color: ${properties.thumbcolor @ context='styleToken'};
+        box-shadow: -200px 0 0 200px ${properties.boxshadowcolor @ context='styleToken'};
+      cursor: pointer;
+       overflow: visible;
+     }
+
+
+    input[type='range']::-webkit-slider-thumb::before {
+     position: absolute;
+     content: '';
+     height: 10px; // equal to height of runnable track 
+     width: 500px; // make this bigger than the widest range input element 
+     left: -502px;  this should be -2px - width 
+     top: 10px; // don't change this 
+     background-color: #1F77B4;
+     }
+
+</style>
+
+<body onload="drawPie(3000000,2453238,5453238.5,55,45)">
+<div class="whole-body-font">
+  <div class="whole-calc-border" style="float:right;right:88px">
+  <div class="slidecontainer slider-border">
+
+
+<form id="loanForm" style="float:left" >
+
+  <!--Loan Amount-->
+
+    <h3>Loan Amount</h3>
+
+    <input type="range" name="amountRange" id="lamount" value="3000000" class="slider" min="0" max="50000000" oninput="this.form.amountInput.value=Intl.NumberFormat('en-IN').format(this.value)" onchange="calculate()">
+
+<input type="text" name="amountInput" id="demo1" value="30,00,000" min="0" max="50000000" size="8" maxlength="8" onclick="this.value=(this.value).replace(/,/g, '');" onfocusout="this.value=Intl.NumberFormat('en-IN').format(this.value)" oninput="this.form.amountRange.value=this.value" onchange="calculateInput()">
+    <span id="error-amount"></span>
+
+
+
+  <!--Interest Rate-->
+
+    <h3>Interest Rate</h3>
+
+    <input type="range" name="rateRange" id="rate" value="6.70" step="0.01" class="slider" min="6" max="15" oninput="this.form.rateInput.value=this.value" onchange="calculate()">
+
+    <input type="number" inputmode="decimal" name="rateInput" id="demo2" value="6.70" min="6" max="15" step="0.01" size="1.8" maxlength="4" oninput="this.form.rateRange.value=this.value" onchange="calculateInput()"> p.a.
+     <span id="error-rate"></span>
+
+
+<!--Loan Term-->
+
+    <h3>Loan Term</h3>
+
+    <input type="range" name="termRange" id="term" value="20" step="1" class="slider" min="1" max="30"  oninput="this.form.termInput.value=this.value" onchange="calculate()">
+
+    <input type="number" name="termInput" id="demo3" value="20" min="1" max="30" step="1" size="1.8" maxlength="2"  oninput="this.form.termRange.value=this.value" onchange="calculateInput()"> Years
+     <span id="error-term"></span>
+
+
+</form>
+<br>
+<br>
+<h2 id="emi" style="position:absolute; bottom:10px;font-size:28px;font-weight:bold">Monthly EMI : <span style="color:#1A3871">Rs.22,721.83</span></h2>
+
+<!--slidecontainer-- slider-border-->
+  </div>
+
+<div id="chartContainer" style="position:absolute;height: 400px; width: 50%;float:right; top:20px;right:20px"></div>
+
+
+
+  <h2 id="totalAmountPayable" style="position:absolute; color:#555555; font-size:18px;float:right;margin-right:45px;bottom:100px; right:90px;">Total Amount Payable : <span style="color:#1A3871">Rs. 54,53,238.5</span></h2>
+
+<button type="button" class="button1" onClick="window.open('https://loans.icicibank.com/loans/home-loan/#/home-loan-application');" style="position:absolute;float:right; bottom:30px; right:140px;">AVAIL NOW</button>
+
+<!--whole-calc-border-->
+</div>
+
+<!--whole-body-font-->
+</div>
+
+</body>
+
+<span id="rd"></span>
+
+<span id="yd"></span>
+
+
+
+
+<!--<span><h2 id="emi">Monthly EMI : Rs.22,721.83</h2></span>
+  <span><h2 id="principal">Principal : 30,00,000 </h2></span>
+  <span><h2 id="interestPayable">Interest Payable : 24,53,238 </h2></span>-->

@@ -1,0 +1,161 @@
+.whole-calc-border{
+background-color:#F3F3F3;
+    //border-style:solid;
+    //border-color:#F3F3F3;
+
+border: 1px solid #ccc;
+    height:550px;
+    width:1050px;
+    position:relative;
+    padding:0px;
+    margin:28px 0px 0px 0px;
+    //margin-top:25px;
+
+    margin:auto;
+}
+
+.slider-border{
+
+    height:390px;
+    width:450px;
+    border: 1px solid #ccc;
+    position:relative;
+    padding:0px 0px 0px 20px;
+   // margin: 0px 20px;
+
+
+}
+
+
+h2{
+font-size:18px;
+    color:#555555;
+    margin:28px 0px 0px;
+    padding:0px 0px 0px 18px;
+    font-weight:200;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+
+.whole-body-font{
+
+    font-size: 16px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 100;
+    margin: 0px 0px 20px;
+    //-webkit-text-size-adjust: 100%;
+    padding:0px 20px;
+    color:#626262;
+}
+
+h3,h2{
+
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 100;
+}
+
+
+input {
+text-align: center;
+}
+
+
+.button1 {
+  background-color: #F5821F; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  
+}
+
+
+/*
+.slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 10px;
+  border-radius: 1px;
+  background: #CACACA;
+  outline: none;
+ // opacity: 0.7;
+ // -webkit-transition: .2s;
+ // transition: opacity .2s;
+    -webkit-background-color: #F5821F;
+}
+
+.slideContainer {
+    position: absolute;
+    margin: 0 auto;
+    left: -27px;
+    top: 127px;
+    width: 0px;
+    height: 135px;
+}
+
+input[type='range'] {
+    width: 120px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      overflow: hidden;
+      width: 260px;
+      height : 10px;
+      cursor : pointer;
+      -webkit-appearance: none;
+      background-color: #CACACA;
+      border-radius: 1px;
+
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      width : 260px;
+      background-color : #CACACA;
+      -webkit-appearance: none;
+    }
+
+    
+    input[type='range']::-webkit-slider-thumb {
+      position : relative;
+      width: 15px;
+      height: 15px;
+     -webkit-appearance: none;
+      background-color: #1F77B4;
+        box-shadow: -200px 0 0 200px #F5821F;
+      cursor: pointer;
+       overflow: visible;
+     }
+
+
+     input[type='range']::-webkit-slider-thumb::before {
+     position: absolute;
+     content: '';
+     height: 10px; /* equal to height of runnable track 
+     width: 500px; /* make this bigger than the widest range input element 
+     left: -502px;  this should be -2px - width 
+     top: 10px; /* don't change this 
+     background-color: #1F77B4;
+     }
+*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+    input[type=number],input[type=text] {
+  //-moz-appearance: textfield;
+        outline: none;
+}
+
+
+    input:out-of-range + label::after {
+  content: 'out of range!';
+}

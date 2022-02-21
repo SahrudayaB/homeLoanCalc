@@ -1,0 +1,213 @@
+
+
+function calculate(){
+
+
+    document.querySelector("#error-amount").innerHTML ="";
+
+    document.querySelector("#error-rate").innerHTML ="";
+
+    document.querySelector("#error-term").innerHTML ="";
+    // Extracting value in the amount 
+    // section in the variable
+   const amount = document.querySelector("#lamount").value;
+
+    // Extracting value in the interest
+    // rate section in the variable
+    const rate = document.querySelector("#rate").value;
+
+    // Extracting value in the months 
+    // section in the variable
+    const years = document.querySelector("#term").value;
+
+
+
+
+          interest = rate/1200;
+          let term = years*12;
+          let top = Math.pow((1+interest),term);
+          let bottom = top - 1;
+          let ratio = top/bottom;
+          EMI = (amount * interest * ratio).toFixed(2);
+          Total = EMI*term;
+          Interest = Total - amount;
+
+          amountPercent = ((amount/Total) * 100).toFixed(1);
+
+          interestPercent = ((Interest/Total) * 100).toFixed(1);
+
+
+    document.querySelector("#emi").innerHTML = "Monthly EMI:  <span style='color:#1A3871'>Rs. " + Intl.NumberFormat('en-IN').format(EMI)+ "</span>";
+
+   // document.querySelector("#principal").innerHTML = "Principal : Rs."+ amount;
+
+   // document.querySelector("#interestPayable").innerHTML = "Interest Payable : Rs."+ Math.round(Interest);
+
+    document.querySelector("#totalAmountPayable").innerHTML = "Total Amount Payable :  <span style='color:#1A3871'>Rs. "+ Intl.NumberFormat('en-IN').format(Math.round(Total))+ "</span>";
+
+    drawPie(amount,Interest,Total,amountPercent,interestPercent);
+}
+
+
+
+function calculateInput(){
+
+    // Extracting value in the amount 
+    // section in the variable
+    const amt= document.getElementById("loanForm").elements.namedItem("amountInput").value;
+
+    const amount = parseInt(amt.replace(/,/g, ''));
+
+    // Extracting value in the interest
+    // rate section in the variable
+   //const rate = document.querySelector("#demo2").value;
+
+    const rate1 = document.getElementById("loanForm").elements.namedItem("rateInput").value;
+
+    // Extracting value in the months 
+    // section in the variable
+    //const years = document.querySelector("#demo3").value;
+
+
+
+   const years1 = document.getElementById("loanForm").elements.namedItem("termInput").value;
+
+
+    if(amount>50000000){
+
+       document.querySelector("#error-amount").innerHTML ="The value entered must be a number that is greater than or equal to 0 and less than or equal to 50000000.";
+
+    }
+    else if(rate1<6 || rate1>15){
+
+          document.querySelector("#error-rate").innerHTML ="The value entered must be a number that is greater than or equal to 6 and less than or equal to 15.";
+
+    }
+
+    else if(years1>30){
+
+        document.querySelector("#error-term").innerHTML ="The value between 1 to 30 Years.";
+
+    }
+    else{
+
+        document.querySelector("#error-amount").innerHTML ="";
+        document.querySelector("#error-rate").innerHTML ="";
+        document.querySelector("#error-term").innerHTML ="";
+
+
+
+
+
+          interest1 = rate1/1200;
+          let term1 = years1*12;
+          let top1 = Math.pow((1+interest1),term1);
+          let bottom1 = top1 - 1;
+          let ratio1 = top1/bottom1;
+          EMI1 = (amount * interest1 * ratio1).toFixed(2);
+          Total1 = EMI1*term1;
+          Interest1 = Total1 - amount;
+
+          amountPercent1 = ((amount/Total1) * 100).toFixed(1);
+
+          interestPercent1 = ((Interest1/Total1) * 100).toFixed(1);
+
+   document.querySelector("#emi").innerHTML = "Monthly EMI:  <span style='color:#1A3871'>Rs. " + Intl.NumberFormat('en-IN').format(EMI1)+ "</span>";
+
+   // document.querySelector("#principal").innerHTML = "Principal : Rs."+ amount;
+
+   // document.querySelector("#interestPayable").innerHTML = "Interest Payable : Rs."+ Math.round(Interest);
+
+    document.querySelector("#totalAmountPayable").innerHTML = "Total Amount Payable :  <span style='color:#1A3871'>Rs. "+ Intl.NumberFormat('en-IN').format(Math.round(Total1))+ "</span>";
+
+    drawPie(amount,Interest1,Total1,amountPercent1,interestPercent1);
+        document.querySelector("#rd").innerHTML = rate1;
+
+        document.querySelector("#yd").innerHTML = years1;
+}
+
+}
+
+function drawPie(amount,Interest,Total,amountPercent,interestPercent){
+
+
+
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+
+
+        backgroundColor: "#F3F3F3",
+		title:{
+			text: "Breakup of Total Payment",
+            fontFamily: "Arial,Helvetica,sans-serif",
+             fontColor:"#555555",
+                fontSize: 18,
+                fontWeight:"bold",
+                padding:15,
+		},
+		legend: {
+            maxHeight: 100,
+			maxWidth: 310,
+			itemWidth: 310,
+            itemHeight:100,
+            horizontalAlign: "center",
+            verticalAlign: "bottom",
+            fontSize:18,
+            fontFamily:"Arial,Helvetica,sans-serif",
+            fontColor:"#555555",
+            fontWeight:"lighter",
+                padding:20,
+
+		},
+
+		data: [
+		{
+			type: "pie",
+
+
+            explodeOnClick: false,
+			showInLegend: true,
+            //fillOpacity: .7,
+            // toolTipContent: " Rs. {y}", 
+			legendText: "{indexLabel}",
+            //risingColor: "#F5821F",
+            borderColor:"#FFF",
+            indexLabelPlacement: "inside",
+            percentFormatString: "#0.#",
+            //indexLabel:"#percent%",
+            //indexLabel:"#percent%",
+            indexLabelFontColor: "#FFF",
+            indexLabelFontSize: 20,
+            markerBorderColor : "#FFF",
+			dataPoints: [
+                { y: amount,  
+                    color:"#F5821F", 
+                    borderColor : "#FFF",
+                    legendText:"Principal             :  Rs. "+ Intl.NumberFormat('en-IN').format(amount), 
+                    legendMarkerType: "square", 
+                    indexLabel: amountPercent+"%",
+                    risingColor: "#F5821F",
+                    toolTipContent: " Principal<br/> Rs. {y}" },
+
+                { y: Interest, 
+                    legendText: "Interest Payable :  Rs. "+ Intl.NumberFormat('en-IN').format(Math.round(Interest)), 
+                    color:"#1F77B4",  
+                    borderColor : "#FFF", 
+                    legendMarkerType: "square", 
+                    indexLabel: interestPercent+"%",
+                    risingColor: "#1F77B4", 
+                    toolTipContent: " Interest Payable<br/>Rs. {y}"},
+
+			],
+
+
+		}
+		]
+	});
+
+    chart.render();
+}
+
+
+
+

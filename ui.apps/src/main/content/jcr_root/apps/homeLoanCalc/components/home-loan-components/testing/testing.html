@@ -1,0 +1,28 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html">
+     <sly data-sly-call="${clientlib.all @ categories='home.loan.test'}">
+</sly>
+
+<form id="myForm">
+<h3>Interest Rate</h3>
+
+    <input type="range" name="rateRange" id="rate" value="6.70" step="0.01" class="slider" min="6" max="15" oninput="this.form.rateInput1.value=this.value">
+
+    <input type="number" inputmode="decimal" name="rateInput1" id="demo2" value="6.70" min="6" max="15" step="0.01" size="1.8" maxlength="4" oninput="this.form.rateRange.value=this.value" onchange="javascript: if(this.value>=6 && this.value<=15) rInput()"> p.a.
+
+<label for="demo2"></label>
+
+
+<!--Loan Term-->
+
+    <h3>Loan Term</h3>
+
+    <input type="range" name="termRange" id="term" value="20" step="1" class="slider" min="1" max="30"  oninput="this.form.termInput1.value=this.value">
+
+    <input type="number" name="termInput1" id="demo3" value="20" min="1" max="30"  size="1.8" maxlength="2"  oninput="this.form.termRange.value=parseInt(this.value)" onchange="javascript: if(this.value>=1 && this.value<=30) yInput()"> Years
+
+    <label for="demo3"></label>
+
+</form>
+<p id="a"></p>
+
+<p id="b"></p>
